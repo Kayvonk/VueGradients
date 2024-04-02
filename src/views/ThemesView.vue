@@ -5,24 +5,28 @@ import ThemeTemplate from "../components/ThemeTemplate.vue"
 import { usePreviewStore } from '@/stores/preview'
 const store = usePreviewStore()
 
-function getPng () {
+function getPng() {
   htmlToImage
-          .toBlob(document.querySelector("body"))
-          .then(function (blob) {
-            const a = document.createElement("a");
-            a.href = URL.createObjectURL(blob);
-            a.download = "yay.png";
-            a.click();
-          });
+    .toBlob(document.querySelector("body"))
+    .then(function (blob) {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "yay.png";
+      a.click();
+      store.endPreview()
+      setTimeout(() => {
+        store.handleDownloadedAlert()
+      }, 1000);
+    });
 }
 
 function copyURL() {
-    try {
-      navigator.clipboard.writeText(store.theme);
-    } catch($e) {
-      alert('Cannot copy');
-    }
+  try {
+    navigator.clipboard.writeText(store.theme);
+  } catch ($e) {
+    alert('Cannot copy');
   }
+}
 
 
 </script>
@@ -71,18 +75,17 @@ export default {
 
 <template>
   <section id="themesContainer" @click.stop="store.endPreview()">
-    <v-alert
-    class="copiedAlert"
-    :class="store.copiedAlert && 'show'"
-    text="Coped to clipboard!"
-    type="success"
-  ></v-alert>
+    <v-alert class="copiedAlert" :class="store.copiedAlert && 'show'" text="Coped to clipboard!"
+      type="success"></v-alert>
+    <v-alert class="downloadedAlert" :class="store.downloadedAlert && 'show'" text="Downloaded Image!"
+      type="success"></v-alert>
     <div class="opagueBackground" :class="store.preview && 'hide'">
       <div id="templateContainer">
 
         <div class="template" v-for="(element, index) in images">
 
-          <ThemeTemplate :theme="element.image" :themeCss='element.imageCss' @click.stop="store.handleTheme(element.imageCss)"></ThemeTemplate>
+          <ThemeTemplate :theme="element.image" :themeCss='element.imageCss'
+            @click.stop="store.handleTheme(element.imageCss)"></ThemeTemplate>
 
         </div>
 
@@ -90,7 +93,8 @@ export default {
       <div id="themeButtonsContainer">
         <button @click.stop="store.togglePreview()" class="vueRoundedBtn" aria-label="Preview">Preview</button>
         <button @click.stop="copyURL(); store.handleCopiedAlert()" class="vueRoundedBtn" aria-label="Code">Code</button>
-        <button @click.stop="getPng(); store.togglePreview(); store.endCopiedAlert()" class="vueRoundedBtn" aria-label="Continue">Download</button>
+        <button @click.stop="getPng(); store.togglePreview(); store.endCopiedAlert()" class="vueRoundedBtn"
+          aria-label="Continue">Download</button>
         <!-- <v-hover v-slot="{ hover }">
              <v-btn :style="{'background-color': hover ? 'yellow' : 'blue' }" class="vueBtn" aria-label="Preview" size ="large" rounded elevation="16"> Preview </v-btn>
         </v-hover>
@@ -101,15 +105,15 @@ export default {
 </template>
 
 <style scoped>
+.copiedAlert,
+.downloadedAlert {
+  position: absolute;
+  top: 8vh;
+  display: none;
+  animation: slideDown linear 1.8s forwards;
+  transition: ease-in-out 0.25s;
 
-.copiedAlert {
-position: absolute;
-top: 8vh;
-display: none;
-animation: slideDown linear 1.8s forwards;
-transition: ease-in-out 0.25s;
-
-/* width: 35vw; */
+  /* width: 35vw; */
 }
 
 @keyframes slideDown {
@@ -117,14 +121,17 @@ transition: ease-in-out 0.25s;
     transform: translateY(-2vh);
     opacity: 0;
   }
+
   25% {
     transform: translateY(0vh);
     opacity: 1;
   }
+
   75% {
     transform: translateY(0vh);
     opacity: 1;
   }
+
   100% {
     transform: translateY(-2vh);
     opacity: 0;
@@ -134,6 +141,7 @@ transition: ease-in-out 0.25s;
 .show {
   display: flex;
 }
+
 #themeButtonsContainer {
   width: 50vw;
   margin: auto;

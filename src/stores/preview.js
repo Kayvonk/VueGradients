@@ -4,7 +4,8 @@ export const usePreviewStore = defineStore('preview', {
   state: () => ({
     preview: false,
     theme: "background-color: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%)",
-    copiedAlert: false
+    copiedAlert: false,
+    downloadedAlert: false
   }),
   actions: {
     // since we rely on `this`, we cannot use an arrow function
@@ -28,6 +29,12 @@ export const usePreviewStore = defineStore('preview', {
     },
     endCopiedAlert() {
       this.copiedAlert = false
+    },
+    handleDownloadedAlert() {
+      this.downloadedAlert = true
+      setTimeout(() => {
+        this.downloadedAlert = false
+      }, 2000)
     },
   } 
 })
