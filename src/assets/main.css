@@ -40,7 +40,7 @@ background-color: aqua;
 }
 
 .vueBtn:hover, .vueRoundedBtn:hover {
-  background-color: rgba(154, 208, 226, 0.75);
+  background-color: rgba(255, 255, 255, 1);
   box-shadow: 10px 12px 10px -5px rgba(94, 94, 94, 0.75);
 
 } 

@@ -5,6 +5,8 @@
 
         <p>The VueGradient app provides users sample CSS gradients as well as a gradient generator.</p>
 
+        <p>Gradients can be copied to your clipboard as CSS or downloaded as a PNG.</p>
+
         <p>Sample gradients are provided by https://webgradients.com/</p>
 
         <p>Thanks for using the app!</p>
