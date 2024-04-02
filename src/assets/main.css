@@ -1,8 +1,10 @@
-@import './base.css';
+@import "./base.css";
 
 body {
-  background: rgb(195,158,203);
-background: linear-gradient(121deg, rgba(195,158,203,1) 21%, rgba(0,254,255,1) 100%);
+  
+  background: rgb(195, 158, 203);
+  background: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%)
+  /* background-image: url("../assets/BlurredBackgrounds/blue-blurred-background.jpg"); */
 }
 
 nav {
@@ -12,4 +14,37 @@ nav {
   height: 10vh;
   width: 100vw;
   box-shadow: 0px 2px 10px -5px rgba(94, 94, 94, 0.75);
+}
+
+/* .vueBtn:hover {
+background-color: aqua;
+} */
+
+.vueBtn {
+  padding: 10px 8px;
+  min-width: fit-content;
+  border: none;
+  border-radius: 3pt;
+  width: 12vw;
+  box-shadow: 0px 2px 10px -5px rgba(94, 94, 94, 0.75);
+
+}
+.vueRoundedBtn {
+  padding: 10px 8px;
+  min-width: fit-content;
+  border: none;
+  border-radius: 25pt;
+  width: 12vw;
+  box-shadow: 0px 2px 10px -5px rgba(94, 94, 94, 0.75);
+
+}
+
+.vueBtn:hover, .vueRoundedBtn:hover {
+  background-color: rgba(154, 208, 226, 0.75);
+  box-shadow: 10px 12px 10px -5px rgba(94, 94, 94, 0.75);
+
+} 
+
+.hide {
+  display: none;
 }

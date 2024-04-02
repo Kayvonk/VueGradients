@@ -12,15 +12,18 @@ export default {
     <section id="homeContainer">
       <div class="opagueBackground">
         <div id="colorButtonsContainer">
-          <v-btn> Color 1 </v-btn>
-          <v-btn> Color 2 </v-btn>
-          <v-btn> Color 3 </v-btn>
+          <button class="vueBtn" aria-label="Color-1">Color 1</button>
+          <button class="vueBtn" aria-label="Color-2">Color 2</button>
+          <button class="vueBtn" aria-label="Color-3">Color 3</button>
         </div>
         <v-icon id="eyedropperIcon" icon="mdi-eyedropper"></v-icon>
         <div class="d-flex justify-space-around">
           <v-color-picker v-model="c1" elevation="15"></v-color-picker>
-          <!-- <v-icon id="eyedropperIcon" icon="mdi-eyedropper" theme="dark"></v-icon> -->
-          <!-- <v-color-picker v-model="c2" hide-inputs></v-color-picker> -->
+        </div>
+        <div id="homeButtonsContainer">
+          <button class="vueRoundedBtn" aria-label="Preview">Preview</button>
+          <button class="vueRoundedBtn" aria-label="Continue">Button</button>
+
         </div>
       </div>
     </section>
@@ -28,6 +31,12 @@ export default {
 </template>
 
 <style scoped>
+#homeButtonsContainer {
+  width: 50vw;
+  display: flex;
+  justify-content: space-around;
+}
+
 #homeContainer {
   width: 100%;
   height: 90vh;
@@ -55,19 +64,6 @@ export default {
 .v-color-picker {
   background-color: transparent;
 }
-
-/* #eyedropperIcon{
-  border: 2px black solid;
-} */
-
-/* .opagueBackground * {
-  background-color: transparent  ;
-} */
-
-/* @media (min-width: 1024px) {
-  .about {
-  }
-} */
 
 /* .v-color-picker__controls{
   background: transparent;

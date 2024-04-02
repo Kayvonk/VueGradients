@@ -1,11 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { usePreviewStore } from '@/stores/preview'
+const store = usePreviewStore()
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <nav>
+      <nav :class="store.preview && 'hide'">
         <div id="navLinksContainer">
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
@@ -14,7 +16,6 @@ import { RouterLink, RouterView } from 'vue-router'
       </nav>
     </div>
   </header>
-
   <RouterView />
 </template>
 
@@ -33,16 +34,8 @@ import { RouterLink, RouterView } from 'vue-router'
   color: white
 }
 
-
 header {
   line-height: 1.5;
   min-height: 10vh;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-  }
-
 }
 </style>
