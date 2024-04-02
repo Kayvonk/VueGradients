@@ -112,8 +112,6 @@ export default {
   display: none;
   animation: slideDown linear 1.8s forwards;
   transition: ease-in-out 0.25s;
-
-  /* width: 35vw; */
 }
 
 @keyframes slideDown {
@@ -179,7 +177,7 @@ export default {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .template {

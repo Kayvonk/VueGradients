@@ -9,9 +9,9 @@ const store = usePreviewStore()
     <div class="wrapper">
       <nav :class="store.preview && 'hide'">
         <div id="navLinksContainer">
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-          <RouterLink to="/themes">Themes</RouterLink>
+          <RouterLink class="routerLink" to="/">Home</RouterLink>
+          <RouterLink class="routerLink" to="/about">About</RouterLink>
+          <RouterLink class="routerLink" to="/themes">Themes</RouterLink>
         </div>
       </nav>
     </div>
@@ -20,19 +20,33 @@ const store = usePreviewStore()
 </template>
 
 <style scoped>
+
+.routerLink {
+  font-size: medium;
+  font-weight: 600;
+  text-decoration: none;
+  text-shadow: 2px 1px 3px #ffffff;
+
+}
+
+.routerLink:hover {
+  text-shadow: 4px 6px 12px #ffffff;
+  color: white
+}
+
 #navLinksContainer {
   width: 50vw;
   display: flex;
   justify-content: space-between;
 }
 
-#navLinksContainer * {
-  text-decoration: none;
+/* #navLinksContainer * {
+ 
 }
 
 #navLinksContainer *:hover {
-  color: white
-}
+
+} */
 
 header {
   line-height: 1.5;
