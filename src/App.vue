@@ -5,7 +5,7 @@ const store = usePreviewStore()
 </script>
 
 <template>
-  <header>
+  <header @click.stop="store.endPreview()">
     <div class="wrapper">
       <nav :class="store.preview && 'hide'">
         <div id="navLinksContainer">

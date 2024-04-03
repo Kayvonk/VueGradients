@@ -10,14 +10,14 @@ const props = defineProps({
   },
 });
 
-function greet() {
+function updateBody() {
   console.log(props);
   document.querySelector("body").style.backgroundImage = props.themeCss;
 }
 </script>
 
 <template>
-  <img @click="greet" class="templateImage" :src="props.theme" />
+  <img @click="updateBody" class="templateImage" :src="props.theme" />
 </template>
 
 <style scoped>

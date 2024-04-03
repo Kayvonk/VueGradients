@@ -1,41 +1,31 @@
-<script>
-export default {
-  data: () => ({
-    c1: "#ff00ff",
-    c2: "#00ff00",
-  }),
-};
-</script>
-<script setup>
-import * as htmlToImage from "html-to-image";
-import { usePreviewStore } from '@/stores/preview'
-const store = usePreviewStore()
-
-function getPng() {
-  htmlToImage
-    .toBlob(document.querySelector("body"))
-    .then(function (blob) {
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "yay.png";
-      a.click();
-      store.endPreview()
-      setTimeout(() => {
-        store.handleDownloadedAlert()
-      }, 1000);
-    });
-}
-
-function copyURL() {
-  try {
-    navigator.clipboard.writeText(store.theme);
-  } catch ($e) {
-    alert('Cannot copy');
+  <script setup>
+  import * as htmlToImage from "html-to-image";
+  import { usePreviewStore } from '@/stores/preview'
+  const store = usePreviewStore()
+  
+  function getPng() {
+    htmlToImage
+      .toBlob(document.querySelector("body"))
+      .then(function (blob) {
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "yay.png";
+        a.click();
+        store.endPreview()
+        setTimeout(() => {
+          store.handleDownloadedAlert()
+        }, 1000);
+      });
   }
-}
-
-
-</script>
+  
+  function copyURL() {
+    try {
+      navigator.clipboard.writeText(store.theme);
+    } catch ($e) {
+      alert('Cannot copy');
+    }
+  }
+  </script>
 
 <template>
   <main>
@@ -47,18 +37,40 @@ function copyURL() {
       <div class="opagueBackground" :class="store.preview && 'hide'">
         <section id="gradientOptions">
           <div id="colorButtonsContainer">
-            <button class="vueBtn" aria-label="Color-1">Color 1</button>
-            <button class="vueBtn" aria-label="Color-2">Color 2</button>
-            <button class="vueBtn" aria-label="Color-3">Color 3</button>
-            <div id="gradientDirectionOptions">
-              <button class="linearBtn" aria-label="Linear">Linear</button>
-              <button class="radialBtn" aria-label="Radial">Radial</button>
+            <div class="colorButtonsRow">
+              <button @click="store.updateColor1()" class="vueBtn" aria-label="Color-1">Color 1</button>
+              <div id="colorDisplay1" class="colorDisplay"></div>
             </div>
-            
-              <input class="radialInput" type="text"/>
+            <div class="colorButtonsRow">
+              <button @click="store.updateColor2()" class="vueBtn" aria-label="Color-2">Color 2</button>
+              <div id="colorDisplay2" class="colorDisplay"></div>
+
+            </div>
+            <div class="colorButtonsRow">
+              <button @click="store.updateColor3()" class="vueBtn" aria-label="Color-3">Color 3</button>
+              <div id="colorDisplay3" class="colorDisplay"></div>
+
+            </div>
+            <div id="gradientDirectionOptions">
+              <button @click="store.selectLinear()" class="linearBtn" aria-label="Linear">Linear</button>
+              <button @click="store.selectRadial()" class="radialBtn" aria-label="Radial">Radial</button>
+            </div>
+
+            <input class="radialInput" :class="store.radialSelected && 'hide'" type="text" />
+            <div :class="store.linearSelected && 'hide'" id="radialInputPlaceholder"> </div>
           </div>
           <div class="d-flex justify-space-around">
-            <v-color-picker v-model="c1" elevation="15"></v-color-picker>
+
+
+            <v-color-picker theme="light" v-model="store.pickerColor" v-model:mode="store.mode" elevation="15"></v-color-picker>
+            <div id="colorTypeButtonsContainer">
+
+              <!-- <div class="colorTypeButtons" v-for="(mode) in modes">
+                <button @click="updateMode(mode); store.getColors()" class="vueBtn" aria-label="colorTypes">{{ mode }}</button>
+              </div> -->
+
+            </div>
+
           </div>
         </section>
         <div id="homeButtonsContainer">
@@ -75,13 +87,42 @@ function copyURL() {
 </template>
 
 <style scoped>
+.colorDisplay {
+  height: auto;
+  width: 5vw;
+  background-color: aliceblue;
+}
+
+.colorButtonsRow {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+
+}
+
+#colorTypeButtonsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 #gradientDirectionOptions {
-display: flex;
-width: 25vw;
+  display: flex;
+  width: 25vw;
 }
 
 .radialInput {
   width: 50px;
+  border: none;
+  padding: 10px;
+  border-radius: 6pt;
+  height: 42px;
+}
+
+#radialInputPlaceholder {
+  width: 50px;
+  height: 42px;
   border: none;
   padding: 10px;
   border-radius: 6pt;
@@ -105,11 +146,12 @@ width: 25vw;
   box-shadow: 0px 2px 10px -5px rgba(99, 99, 99, 0.75);
 }
 
-.linearBtn:hover, .radialBtn:hover {
+.linearBtn:hover,
+.radialBtn:hover {
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 10px 12px 10px -5px rgba(94, 94, 94, 0.75);
 
-} 
+}
 
 #colorButtonsContainer {
   display: flex;
