@@ -3,7 +3,7 @@
     <div class="opagueBackground">
       <div id="aboutTextContainer">
         <p>
-          The VueGradient app provides users sample CSS gradients as well as a
+          The VueGradients app provides users sample CSS gradients as well as a
           gradient generator.
         </p>
 

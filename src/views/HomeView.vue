@@ -15,6 +15,8 @@ function getPng() {
     }, 1000);
   });
 }
+
+
 </script>
 
 <template>
@@ -84,16 +86,22 @@ function getPng() {
                 Radial
               </button>
             </div>
-
-            <input
-              class="radialInput"
+            <span id="linearInputSpan" :class="store.radialSelected && 'hide'">
+              <input
+              @change="store.handleLinearInputChange($event)"
+              class="linearInput"
               :class="store.radialSelected && 'hide'"
               type="text"
-            />
-            <div
+              maxLength="3"
+              defaultValue="90"
+              />
+            </span>
+            <span :class="store.linearSelected && 'hide'">
+              <div
               :class="store.linearSelected && 'hide'"
-              id="radialInputPlaceholder"
-            ></div>
+              id="linearInputPlaceholder"
+              ></div>
+            </span>
           </div>
           <div class="d-flex justify-space-around">
             <v-color-picker
@@ -145,6 +153,14 @@ function getPng() {
 </template>
 
 <style scoped>
+#linearInputSpan::after {
+content: "°";
+margin-left: 10px;
+font-size: 16pt;
+
+
+}
+
 .colorDisplay {
   height: auto;
   width: 5vw;
@@ -169,7 +185,7 @@ function getPng() {
   width: 25vw;
 }
 
-.radialInput {
+.linearInput {
   width: 50px;
   border: none;
   padding: 10px;
@@ -177,7 +193,7 @@ function getPng() {
   height: 42px;
 }
 
-#radialInputPlaceholder {
+#linearInputPlaceholder {
   width: 50px;
   height: 42px;
   border: none;
