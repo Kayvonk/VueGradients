@@ -1,29 +1,21 @@
-# Gradients
+# Vue Gradients
 
-This template should help get you started developing with Vue 3 in Vite.
+## Table of Contents
+* [Description](#description)
+* [Usage](#usage)
+* [Questions](#questions)
 
-## Recommended IDE Setup
+## Description
+Vue Gradients is an application that allows users to either choose from a selection of CSS gradients or generate their own linear or radial gradients. Once chosen, gradients can be copied to clipboard or downloaded as a PNG. 
+![HomeThumbnail](./src/assets/vueGradientsThumbnail.PNG)
+![ThemesThumbnail](./src/assets/vueGradientsThumbnail2.PNG)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Usage
+From the home page, up to 3 colors can be chosen using the color picking widget and then clicking on the color buttons to lock it in. Once the gradient options have been chosen, the output can be viewed fullscreen by pressing the 'Preview' button (cancelled by clicking anywhere on the screen). The gradient can also be copied to clipboard with the 'Code' button and also downloaded.
 
-## Customize configuration
+## Questions
+Follow me on [Github](https://github.com/Kayvonk).
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+To contact me, send an email to kayvonk@gmail.com with your name and inquiry.
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+Deployed Application: https://vuegradients.netlify.app/
