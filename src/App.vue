@@ -26,7 +26,6 @@ const store = usePreviewStore()
   font-weight: 600;
   text-decoration: none;
   text-shadow: 2px 1px 3px #ffffff;
-
 }
 
 .routerLink:hover {
@@ -39,14 +38,6 @@ const store = usePreviewStore()
   display: flex;
   justify-content: space-between;
 }
-
-/* #navLinksContainer * {
- 
-}
-
-#navLinksContainer *:hover {
-
-} */
 
 header {
   line-height: 1.5;

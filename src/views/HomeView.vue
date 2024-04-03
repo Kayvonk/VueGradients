@@ -1,85 +1,143 @@
-  <script setup>
-  import * as htmlToImage from "html-to-image";
-  import { usePreviewStore } from '@/stores/preview'
-  const store = usePreviewStore()
-  
-  function getPng() {
-    htmlToImage
-      .toBlob(document.querySelector("body"))
-      .then(function (blob) {
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = "yay.png";
-        a.click();
-        store.endPreview()
-        setTimeout(() => {
-          store.handleDownloadedAlert()
-        }, 1000);
-      });
-  }
-  
-  function copyURL() {
-    try {
-      navigator.clipboard.writeText(store.theme);
-    } catch ($e) {
-      alert('Cannot copy');
-    }
-  }
-  </script>
+<script setup>
+import * as htmlToImage from "html-to-image";
+import { usePreviewStore } from "@/stores/preview";
+const store = usePreviewStore();
+
+function getPng() {
+  htmlToImage.toBlob(document.querySelector("body")).then(function (blob) {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "yay.png";
+    a.click();
+    store.endPreview();
+    setTimeout(() => {
+      store.handleDownloadedAlert();
+    }, 1000);
+  });
+}
+</script>
 
 <template>
   <main>
     <section id="homeContainer" @click.stop="store.endPreview()">
-      <v-alert class="copiedAlert" :class="store.copiedAlert && 'show'" text="Coped to clipboard!"
-        type="success"></v-alert>
-      <v-alert class="downloadedAlert" :class="store.downloadedAlert && 'show'" text="Downloaded Image!"
-        type="success"></v-alert>
+      <v-alert
+        class="copiedAlert"
+        :class="store.copiedAlert && 'show'"
+        text="Copied to clipboard!"
+        type="success"
+      ></v-alert>
+      <v-alert
+        class="downloadedAlert"
+        :class="store.downloadedAlert && 'show'"
+        text="Download Complete"
+        type="success"
+      ></v-alert>
       <div class="opagueBackground" :class="store.preview && 'hide'">
         <section id="gradientOptions">
           <div id="colorButtonsContainer">
             <div class="colorButtonsRow">
-              <button @click="store.updateColor1()" class="vueBtn" aria-label="Color-1">Color 1</button>
+              <button
+                id="colorButton1"
+                @click.stop="store.updateColor1()"
+                class="vueBtn"
+                aria-label="Color-1"
+              >
+                Color 1
+              </button>
               <div id="colorDisplay1" class="colorDisplay"></div>
             </div>
             <div class="colorButtonsRow">
-              <button @click="store.updateColor2()" class="vueBtn" aria-label="Color-2">Color 2</button>
+              <button
+                id="colorButton2"
+                @click.stop="store.updateColor2()"
+                class="vueBtn"
+                aria-label="Color-2"
+              >
+                Color 2
+              </button>
               <div id="colorDisplay2" class="colorDisplay"></div>
-
             </div>
             <div class="colorButtonsRow">
-              <button @click="store.updateColor3()" class="vueBtn" aria-label="Color-3">Color 3</button>
+              <button
+                id="colorButton3"
+                @click.stop="store.updateColor3()"
+                class="vueBtn"
+                aria-label="Color-3"
+              >
+                Color 3
+              </button>
               <div id="colorDisplay3" class="colorDisplay"></div>
-
             </div>
             <div id="gradientDirectionOptions">
-              <button @click="store.selectLinear()" class="linearBtn" aria-label="Linear">Linear</button>
-              <button @click="store.selectRadial()" class="radialBtn" aria-label="Radial">Radial</button>
+              <button
+                @click.stop="store.selectLinear()"
+                class="linearBtn"
+                aria-label="Linear"
+              >
+                Linear
+              </button>
+              <button
+                @click.stop="store.selectRadial()"
+                class="radialBtn"
+                aria-label="Radial"
+              >
+                Radial
+              </button>
             </div>
 
-            <input class="radialInput" :class="store.radialSelected && 'hide'" type="text" />
-            <div :class="store.linearSelected && 'hide'" id="radialInputPlaceholder"> </div>
+            <input
+              class="radialInput"
+              :class="store.radialSelected && 'hide'"
+              type="text"
+            />
+            <div
+              :class="store.linearSelected && 'hide'"
+              id="radialInputPlaceholder"
+            ></div>
           </div>
           <div class="d-flex justify-space-around">
-
-
-            <v-color-picker theme="light" v-model="store.pickerColor" v-model:mode="store.mode" elevation="15"></v-color-picker>
+            <v-color-picker
+              theme="light"
+              v-model="store.pickerColor"
+              v-model:mode="store.mode"
+              elevation="15"
+            ></v-color-picker>
             <div id="colorTypeButtonsContainer">
-
               <!-- <div class="colorTypeButtons" v-for="(mode) in modes">
                 <button @click="updateMode(mode); store.getColors()" class="vueBtn" aria-label="colorTypes">{{ mode }}</button>
               </div> -->
-
             </div>
-
           </div>
         </section>
         <div id="homeButtonsContainer">
-          <button @click.stop="store.togglePreview()" class="vueRoundedBtn" aria-label="Preview">Preview</button>
-          <button @click.stop="copyURL(); store.handleCopiedAlert()" class="vueRoundedBtn"
-            aria-label="Code">Code</button>
-          <button @click.stop="getPng(); store.togglePreview(); store.endCopiedAlert()" class="vueRoundedBtn"
-            aria-label="Continue">Download</button>
-
+          <button
+            @click.stop="store.togglePreview()"
+            class="vueRoundedBtn"
+            aria-label="Preview"
+          >
+            Preview
+          </button>
+          <button
+            @click.stop="
+              store.copyURL();
+              store.handleCopiedAlert();
+            "
+            class="vueRoundedBtn"
+            aria-label="Code"
+          >
+            Code
+          </button>
+          <button
+            @click.stop="
+              getPng();
+              store.togglePreview();
+              store.endCopiedAlert();
+            "
+            class="vueRoundedBtn"
+            aria-label="Continue"
+          >
+            Download
+          </button>
         </div>
       </div>
     </section>
@@ -97,7 +155,6 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
-
 }
 
 #colorTypeButtonsContainer {
@@ -150,7 +207,6 @@
 .radialBtn:hover {
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 10px 12px 10px -5px rgba(94, 94, 94, 0.75);
-
 }
 
 #colorButtonsContainer {
@@ -220,7 +276,6 @@
 
 .opagueBackground {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   flex-direction: column;
   width: 75vw;
@@ -242,8 +297,4 @@
 .v-color-picker {
   background-color: transparent;
 }
-
-/* .v-color-picker__controls{
-  background: transparent;
-} */
 </style>

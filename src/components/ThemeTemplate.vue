@@ -11,7 +11,6 @@ const props = defineProps({
 });
 
 function updateBody() {
-  console.log(props);
   document.querySelector("body").style.backgroundImage = props.themeCss;
 }
 </script>

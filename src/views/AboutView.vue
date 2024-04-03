@@ -2,10 +2,15 @@
   <div id="aboutContainer">
     <div class="opagueBackground">
       <div id="aboutTextContainer">
+        <p>
+          The VueGradient app provides users sample CSS gradients as well as a
+          gradient generator.
+        </p>
 
-        <p>The VueGradient app provides users sample CSS gradients as well as a gradient generator.</p>
-
-        <p>Gradients can be copied to your clipboard as CSS or downloaded as a PNG.</p>
+        <p>
+          Gradients can be copied to your clipboard as CSS or downloaded as a
+          PNG.
+        </p>
 
         <p>Sample gradients are provided by https://webgradients.com/</p>
 
@@ -42,5 +47,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size: larger;
 }
 </style>
