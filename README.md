@@ -7,7 +7,7 @@
 
 ## Description
 Vue Gradients is an application that allows users to either choose from a selection of CSS gradients or generate their own linear or radial gradients. Once chosen, gradients can be copied to clipboard or downloaded as a PNG. 
-![HomeThumbnail](./src/assets/vueGradientsThumbnail.PNG)
+![HomeThumbnail](./src/assets/vueGradientsThumbnail1.PNG)
 ![ThemesThumbnail](./src/assets/vueGradientsThumbnail2.PNG)
 
 ## Usage
