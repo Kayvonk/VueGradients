@@ -194,4 +194,13 @@ export default {
   box-shadow: inset 10px 10px 50px 20px rgba(255, 255, 255, 0.656);
   border: 1px solid rgb(255, 255, 255);
 }
+
+@media screen and (max-width: 480px) {
+  #themeButtonsContainer {
+  flex-direction: column  ;
+  align-items: center ;
+  height: 20vh
+}
+}
+
 </style>

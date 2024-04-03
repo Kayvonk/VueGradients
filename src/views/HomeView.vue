@@ -153,6 +153,11 @@ function getPng() {
 </template>
 
 <style scoped>
+
+.colorDisplay {
+min-width: 40px;
+}
+
 #linearInputSpan::after {
 content: "°";
 margin-left: 10px;
@@ -183,6 +188,8 @@ font-size: 16pt;
 #gradientDirectionOptions {
   display: flex;
   width: 25vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .linearInput {
@@ -274,6 +281,8 @@ font-size: 16pt;
   width: 100%;
 }
 
+
+
 #homeButtonsContainer {
   width: 50vw;
   display: flex;
@@ -312,5 +321,33 @@ font-size: 16pt;
 
 .v-color-picker {
   background-color: transparent;
+}
+
+@media screen and (max-width: 480px) {
+  #homeButtonsContainer {
+  flex-direction: column  ;
+  align-items: center ;
+  height: 20vh
+}
+}
+
+@media screen and (max-width: 768px) {
+  #gradientOptions {
+flex-direction: column-reverse;
+align-items: center;
+  }
+
+  .opagueBackground {
+  width: 90vw;
+  height: auto;
+  padding: 35px 0;
+  border-radius: 13pt;
+}
+
+#homeContainer {
+  height: auto;
+margin: 35px 0;
+}
+
 }
 </style>

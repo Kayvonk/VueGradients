@@ -41,6 +41,7 @@
   padding: 15vh 30px 30px 30px;
 }
 
+
 #aboutTextContainer {
   width: 100%;
   height: 70%;
