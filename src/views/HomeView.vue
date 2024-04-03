@@ -22,128 +22,67 @@ function getPng() {
 <template>
   <main>
     <section id="homeContainer" @click.stop="store.endPreview()">
-      <v-alert
-        class="copiedAlert"
-        :class="store.copiedAlert && 'show'"
-        text="Copied to clipboard!"
-        type="success"
-      ></v-alert>
-      <v-alert
-        class="downloadedAlert"
-        :class="store.downloadedAlert && 'show'"
-        text="Download Complete"
-        type="success"
-      ></v-alert>
+      <v-alert class="copiedAlert" :class="store.copiedAlert && 'show'" text="Copied to clipboard!"
+        type="success"></v-alert>
+      <v-alert class="downloadedAlert" :class="store.downloadedAlert && 'show'" text="Download Complete"
+        type="success"></v-alert>
       <div class="opagueBackground" :class="store.preview && 'hide'">
         <section id="gradientOptions">
           <div id="colorButtonsContainer">
             <div class="colorButtonsRow">
-              <button
-                id="colorButton1"
-                @click.stop="store.updateColor1()"
-                class="vueBtn"
-                aria-label="Color-1"
-              >
+              <button id="colorButton1" @click.stop="store.updateColor1()" class="vueBtn" aria-label="Color-1">
                 Color 1
               </button>
               <div id="colorDisplay1" class="colorDisplay"></div>
             </div>
             <div class="colorButtonsRow">
-              <button
-                id="colorButton2"
-                @click.stop="store.updateColor2()"
-                class="vueBtn"
-                aria-label="Color-2"
-              >
+              <button id="colorButton2" @click.stop="store.updateColor2()" class="vueBtn" aria-label="Color-2">
                 Color 2
               </button>
               <div id="colorDisplay2" class="colorDisplay"></div>
             </div>
             <div class="colorButtonsRow">
-              <button
-                id="colorButton3"
-                @click.stop="store.updateColor3()"
-                class="vueBtn"
-                aria-label="Color-3"
-              >
+              <button id="colorButton3" @click.stop="store.updateColor3()" class="vueBtn" aria-label="Color-3">
                 Color 3
               </button>
               <div id="colorDisplay3" class="colorDisplay"></div>
             </div>
             <div id="gradientDirectionOptions">
-              <button
-                @click.stop="store.selectLinear()"
-                class="linearBtn"
-                aria-label="Linear"
-              >
+              <button @click.stop="store.selectLinear()" class="linearBtn" aria-label="Linear">
                 Linear
               </button>
-              <button
-                @click.stop="store.selectRadial()"
-                class="radialBtn"
-                aria-label="Radial"
-              >
+              <button @click.stop="store.selectRadial()" class="radialBtn" aria-label="Radial">
                 Radial
               </button>
             </div>
             <span id="linearInputSpan" :class="store.radialSelected && 'hide'">
-              <input
-              @change="store.handleLinearInputChange($event)"
-              class="linearInput"
-              :class="store.radialSelected && 'hide'"
-              type="text"
-              maxLength="3"
-              defaultValue="90"
-              />
+              <input @change="store.handleLinearInputChange($event)" class="linearInput"
+                :class="store.radialSelected && 'hide'" type="text" maxLength="3" defaultValue="90" />
             </span>
             <span :class="store.linearSelected && 'hide'">
-              <div
-              :class="store.linearSelected && 'hide'"
-              id="linearInputPlaceholder"
-              ></div>
+              <div :class="store.linearSelected && 'hide'" id="linearInputPlaceholder"></div>
             </span>
           </div>
           <div class="d-flex justify-space-around">
-            <v-color-picker
-              theme="light"
-              v-model="store.pickerColor"
-              v-model:mode="store.mode"
-              elevation="15"
-            ></v-color-picker>
-            <div id="colorTypeButtonsContainer">
-              <!-- <div class="colorTypeButtons" v-for="(mode) in modes">
-                <button @click="updateMode(mode); store.getColors()" class="vueBtn" aria-label="colorTypes">{{ mode }}</button>
-              </div> -->
-            </div>
+            <v-color-picker theme="light" v-model="store.pickerColor" v-model:mode="store.mode"
+              elevation="15"></v-color-picker>
           </div>
         </section>
         <div id="homeButtonsContainer">
-          <button
-            @click.stop="store.togglePreview()"
-            class="vueRoundedBtn"
-            aria-label="Preview"
-          >
+          <button @click.stop="store.togglePreview()" class="vueRoundedBtn" aria-label="Preview">
             Preview
           </button>
-          <button
-            @click.stop="
-              store.copyURL();
-              store.handleCopiedAlert();
-            "
-            class="vueRoundedBtn"
-            aria-label="Code"
-          >
+          <button @click.stop="
+      store.copyURL();
+    store.handleCopiedAlert();
+    " class="vueRoundedBtn" aria-label="Code">
             Code
           </button>
-          <button
-            @click.stop="
-              getPng();
-              store.togglePreview();
-              store.endCopiedAlert();
-            "
-            class="vueRoundedBtn"
-            aria-label="Continue"
-          >
+          <button @click.stop="
+      getPng();
+    store.togglePreview();
+    store.endCopiedAlert();
+    " class="vueRoundedBtn" aria-label="Continue">
             Download
           </button>
         </div>
@@ -153,15 +92,15 @@ function getPng() {
 </template>
 
 <style scoped>
-
 .colorDisplay {
-min-width: 40px;
+  min-width: 40px;
+  border-radius: 3pt;
 }
 
 #linearInputSpan::after {
-content: "°";
-margin-left: 10px;
-font-size: 16pt;
+  content: "°";
+  margin-left: 10px;
+  font-size: 16pt;
 
 
 }
@@ -323,31 +262,30 @@ font-size: 16pt;
   background-color: transparent;
 }
 
-@media screen and (max-width: 480px) {
-  #homeButtonsContainer {
-  flex-direction: column  ;
-  align-items: center ;
-  height: 20vh
-}
-}
-
 @media screen and (max-width: 768px) {
   #gradientOptions {
-flex-direction: column-reverse;
-align-items: center;
+    flex-direction: column-reverse;
+    align-items: center;
   }
 
   .opagueBackground {
-  width: 90vw;
-  height: auto;
-  padding: 35px 0;
-  border-radius: 13pt;
+    width: 90vw;
+    height: auto;
+    padding: 35px 0;
+  }
+
+  #homeContainer {
+    height: auto;
+    margin: 35px 0;
+  }
+
 }
 
-#homeContainer {
-  height: auto;
-margin: 35px 0;
-}
-
+@media screen and (max-width: 480px) {
+  #homeButtonsContainer {
+    flex-direction: column;
+    align-items: center;
+    height: 20vh
+  }
 }
 </style>

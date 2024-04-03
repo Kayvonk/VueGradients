@@ -43,4 +43,12 @@ header {
   line-height: 1.5;
   min-height: 10vh;
 }
+
+
+@media screen and (max-width: 420px) {
+  #navLinksContainer {
+  width: 70vw;
+}
+}
+
 </style>

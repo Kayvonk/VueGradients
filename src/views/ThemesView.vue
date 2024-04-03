@@ -183,10 +183,9 @@ export default {
 }
 
 .template {
-  max-width: 200px;
   max-height: 150px;
   width: 33%;
-  height: 33%;
+  height: auto;
   padding: 10px;
 }
 
@@ -195,12 +194,43 @@ export default {
   border: 1px solid rgb(255, 255, 255);
 }
 
-@media screen and (max-width: 480px) {
-  #themeButtonsContainer {
-  flex-direction: column  ;
-  align-items: center ;
-  height: 20vh
-}
+@media screen and (max-width: 768px) {
+  .template {
+    max-height: 150px;
+    width: 50%;
+    height: auto;
+    padding: 10px;
+  }
+
+  #themesContainer {
+    height: auto;
+    margin: 35px 0;
+
+  }
+
+  .opagueBackground {
+    height: auto;
+    padding: 35px 0;
+
+  }
+
+  #templateContainer {
+    max-height: none;
+  }
+
 }
 
+@media screen and (max-width: 480px) {
+  #themeButtonsContainer {
+    flex-direction: column;
+    align-items: center;
+    height: 20vh
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .template {
+    width: 100%;
+  }
+}
 </style>

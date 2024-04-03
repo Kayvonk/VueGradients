@@ -50,4 +50,16 @@
   justify-content: space-between;
   font-size: larger;
 }
+
+@media screen and (max-width: 420px) {
+  #aboutTextContainer {
+  font-size: medium;
+}
+}
+
+@media screen and (max-width: 420px) {
+  #aboutTextContainer {
+  font-size: small;
+}
+}
 </style>

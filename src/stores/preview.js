@@ -21,7 +21,6 @@ export const usePreviewStore = defineStore('preview', {
   actions: {
     // since we rely on `this`, we cannot use an arrow function
     handleLinearInputChange(event) {
-      // console.log(typeof event.target.value);
       this.linearValue = event.target.value
       this.generateGradientCss(this.color1, this.color2, this.color3)
     },
