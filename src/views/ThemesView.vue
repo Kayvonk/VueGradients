@@ -151,12 +151,12 @@ export default {
 
 #templateContainer {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   width: 70%;
   height: auto;
   margin-top: 4vh;
   max-height: 50vh;
+  margin-bottom: 30px;
 }
 
 #themesContainer {
