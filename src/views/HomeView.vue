@@ -63,7 +63,7 @@ function getPng() {
               <div :class="store.linearSelected && 'hide'" id="linearInputPlaceholder"></div>
             </span>
           </div>
-          <div class="d-flex justify-space-around">
+          <div class="colorPickerContainer">
             <v-color-picker theme="light" v-model="store.pickerColor" v-model:mode="store.mode"
               elevation="15"></v-color-picker>
           </div>
@@ -92,6 +92,11 @@ function getPng() {
 </template>
 
 <style scoped>
+.colorPickerContainer {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .colorDisplay {
   min-width: 40px;
   border-radius: 3pt;
@@ -101,8 +106,6 @@ function getPng() {
   content: "°";
   margin-left: 10px;
   font-size: 16pt;
-
-
 }
 
 .colorDisplay {
@@ -286,6 +289,10 @@ function getPng() {
     flex-direction: column;
     align-items: center;
     height: 20vh
+  }
+
+  .v-color-picker * {
+    width: 100px !important;
   }
 }
 </style>
