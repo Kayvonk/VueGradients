@@ -48,18 +48,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: larger;
+  font-size: 16pt;
+}
+
+@media screen and (max-width: 768px) {
+  #aboutTextContainer {
+  font-size: 14pt;
+}
 }
 
 @media screen and (max-width: 420px) {
   #aboutTextContainer {
-  font-size: medium;
-}
-}
-
-@media screen and (max-width: 420px) {
-  #aboutTextContainer {
-  font-size: small;
+    font-size: 11pt;
 }
 }
 </style>
