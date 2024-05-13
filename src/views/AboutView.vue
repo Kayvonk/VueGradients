@@ -49,6 +49,7 @@
   flex-direction: column;
   justify-content: space-between;
   font-size: 16pt;
+  color: black;
 }
 
 @media screen and (max-width: 768px) {
